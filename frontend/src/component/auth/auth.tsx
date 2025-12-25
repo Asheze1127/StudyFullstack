@@ -12,9 +12,10 @@ interface AuthProps {
     password: string;
     setUsername: (username: string) => void;
     setPassword: (password: string) => void;
+    handleClick: () => void;
 }
 
-export const Auth = ({ title, description, username, password, setUsername, setPassword }: AuthProps) => {
+export const Auth = ({ title, description, username, password, setUsername, setPassword, handleClick }: AuthProps) => {
     return (
         <div>
         <Card>
@@ -35,7 +36,11 @@ export const Auth = ({ title, description, username, password, setUsername, setP
                             <Input type="password" placeholder="Password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div className="flex justify-center items-center gap-4 py-4">
-                            <Button className="w-1/2" type="submit">ログイン</Button>
+                            <Button 
+                            className="w-1/2" 
+                            type="submit"
+                            onClick={handleClick}
+                            >ログイン</Button>
                             <Link href="/signup" className="w-1/2 text-center border border-gray-300 rounded-md p-2">新規登録</Link>
                         </div>
                     </form>
