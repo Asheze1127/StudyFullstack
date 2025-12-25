@@ -12,8 +12,6 @@ export const AuthContainer = () => {
 
     return (
         <Auth 
-            title="ログイン" 
-            description="ログインしてください" 
             username={username} 
             password={password} 
             setUsername={setUsername} 
