@@ -45,7 +45,7 @@ export const Auth = ({ username, password, setUsername, setPassword, handleClick
                             type="submit"
                             onClick={handleClick}
                         >{mode === "login" ? "ログイン" : "新規登録"}</Button>
-                        <Button className="w-1/2" type="button" onClick={handleModeChange}>{mode === "login" ? "新規登録" : "ログイン"}</Button>
+                        <Button className="w-1/2" type="button" variant="outline" onClick={handleModeChange}>{mode === "login" ? "新規登録" : "ログイン"}</Button>
                     </div>
                 </form>
             </CardContent>
