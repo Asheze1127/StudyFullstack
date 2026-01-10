@@ -1,0 +1,7 @@
+{
+    "name": "db-migrations",
+    "private": true,
+    "devDependencies": {
+      "prisma": "^5.0.0"
+    }
+  }
