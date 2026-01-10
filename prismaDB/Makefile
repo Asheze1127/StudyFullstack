@@ -17,7 +17,7 @@ SHELL := /bin/bash
 PRISMA_BIN := npx prisma
 
 # schema.prisma のパス
-SCHEMA := prisma/schema.prisma
+SCHEMA := schema.prisma
 
 # 環境変数ファイル（Prisma が自動で読むが、明示用）
 ENV ?= .env
