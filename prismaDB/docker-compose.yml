@@ -1,0 +1,46 @@
+services:
+  # PostgreSQL データベース
+  db:
+    image: postgres:${POSTGRES_VERSION:-16-alpine}
+    container_name: ${CONTAINER_NAME:-pgsql_db}
+    hostname: ${HOSTNAME:-pgsql_db}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: ${USER_NAME:-postgres}
+      POSTGRES_PASSWORD: ${USER_PASS:-postgres}
+      POSTGRES_DB: ${DB_NAME:-fullstack_db}
+    volumes:
+      - db_vol:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${USER_NAME:-postgres} -d ${DB_NAME:-fullstack_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - db_network
+
+  # pgweb - PostgreSQL管理UI
+  pgweb:
+    image: sosedoff/pgweb:latest
+    container_name: ${PGWEB_CONTAINER_NAME:-pgweb}
+    ports:
+      - "${PGWEB_PORT:-8080}:8081"
+    environment:
+      # まずpostgresデータベースに接続（確実に存在する）
+      PGWEB_DATABASE_URL: postgres://${USER_NAME:-postgres}:${USER_PASS:-postgres}@db:5432/postgres?sslmode=disable
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - db_network
+
+volumes:
+  db_vol:
+
+networks:
+  db_network:
+    driver: bridge
