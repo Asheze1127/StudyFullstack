@@ -1,11 +1,12 @@
-import Image from "next/image";
-
+import { AuthContainer } from "../container/authContainer";
 
 export default function Home() {
   return (
-    <div className="font-sans dark:bg-black">
-      <main className="w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-
+    <div className="font-sans">
+      <main className="bg-white">
+        <div className="max-w-2xl mx-auto py-32 px-16">
+          <AuthContainer />
+        </div>
       </main>
     </div>
   );
